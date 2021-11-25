@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>r2d2_description</name>
+  <version>0.0.0</version>
+  <description>The test robot model with diff-drive</description>
+
+  <maintainer email="petr.sorokoumov@gmail.com">ps</maintainer>
+
+<license>TODO</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

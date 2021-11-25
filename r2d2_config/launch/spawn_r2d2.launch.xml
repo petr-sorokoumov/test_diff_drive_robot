@@ -1,0 +1,22 @@
+<launch>
+  <arg name="robot" default="default_robot"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.1"/>
+  <arg name="yaw" default="0.0"/>
+
+  <param name="$(arg robot)/robot_description" 
+    command="$(find xacro)/xacro --inorder '$(find r2d2_description)/urdf/r2d2.urdf.xacro'" />
+  
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+    args="-param robot_description -urdf -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw) -model $(arg robot)"
+    ns="$(arg robot)"/>
+
+  <rosparam file="$(find r2d2_config)/config/motion/r2d2_control.yaml" command="load" ns="$(arg robot)"/>
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen" ns="$(arg robot)"
+    args="mobile_base_controller joint_state_controller" />
+
+
+</launch>
